@@ -1,176 +1,305 @@
-:root {
-    --rosa-pastel: #ffb6c1;
-    --rosa-claro: #ffd6e0;
-    --amarillo-primavera: #ffe066;
-    --verde-menta: #98c9a3;
-    --blanco: #ffffff;
-    --gris-oscuro: #333333;
-    --transicion: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-* {
+/* ================================
+   FUENTES Y BASE
+================================ */
+body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 50%, #fffdf5 100%);
-    color: var(--gris-oscuro);
-    font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
+    background: linear-gradient(180deg, #1e1e1e, #000);
+    color: #f5f5f5;
     overflow-x: hidden;
-    line-height: 1.8;
-    position: relative;
 }
 
-/* Fondo con textura primaveral */
-body::before {
-    content: "";
+h1, h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    color: #f9e076;
+}
+
+/* ================================
+   HERO
+================================ */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.titulo-principal {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: brilloTexto 3s infinite alternate;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ddd;
+}
+
+.imagen-hero {
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid transparent;
+    background: linear-gradient(135deg, #d4af37, #f9e076);
+    padding: 5px;
+    margin-bottom: 2rem;
+    transition: transform 0.4s ease;
+}
+
+.imagen-hero img {
+    display: block;
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.mensaje-destacado {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    color: #ffe57f;
+    font-style: italic;
+}
+
+/* ================================
+   SECCIONES
+================================ */
+.seccion {
+    padding: 3rem 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.seccion.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.titulo-seccion {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.mensaje {
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.final {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mensaje-humilde {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+.firma {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* ================================
+   DECORACIÓN
+================================ */
+.decoracion {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.decoracion-1 {
+    top: 10px;
+    left: 20px;
+}
+
+.decoracion-2 {
+    bottom: 20px;
+    right: 20px;
+}
+
+.corazon {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+/* ================================
+   PETALOS Y PARTICULAS
+================================ */
+.flotantes {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 15% 25%, rgba(255, 182, 193, 0.12) 0%, transparent 25%),
-        radial-gradient(circle at 85% 75%, rgba(255, 224, 102, 0.1) 0%, transparent 25%),
-        radial-gradient(circle at 35% 85%, rgba(152, 201, 163, 0.12) 0%, transparent 20%),
-        radial-gradient(circle at 75% 15%, rgba(255, 182, 193, 0.15) 0%, transparent 20%);
-    backdrop-filter: blur(1.5px);
-    z-index: -1;
-}
-
-.contenedor-principal {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    z-index: 2;
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.imagen-hero {
-    width: 85vw;
-    max-width: 600px;
-    height: 85vw;
-    max-height: 600px;
-    border-radius: 50%;
+    pointer-events: none;
     overflow: hidden;
-    position: relative;
-    margin: 2rem auto;
-    box-shadow: 
-        0 0 0 1px rgba(255, 182, 193, 0.4),
-        0 0 40px rgba(255, 182, 193, 0.2),
-        0 0 100px rgba(255, 224, 102, 0.15);
-    transition: var(--transicion);
+    z-index: 1;
 }
 
-.imagen-hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+.petalo {
+    position: absolute;
+    top: -10%;
+    color: #f9e076;
+    animation: caer linear forwards;
 }
 
-.titulo-principal {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    color: var(--rosa-pastel);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 10px rgba(255, 182, 193, 0.4);
+@keyframes caer {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
-.subtitulo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-    color: var(--amarillo-primavera);
-    margin-bottom: 2rem;
-    font-weight: 400;
-    font-style: italic;
+.particula {
+    position: fixed;
+    top: -5px;
+    border-radius: 50%;
+    background: rgba(249, 224, 118, 0.8);
+    opacity: 0.8;
+    animation: flotar linear forwards;
+    z-index: 5;
 }
 
-.mensaje-destacado {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    max-width: 650px;
-    margin: 2rem auto;
-    color: var(--gris-oscuro);
-    font-weight: 300;
-    line-height: 1.9;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+@keyframes flotar {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 }
 
-.seccion {
-    min-height: 100vh;
+/* ================================
+   BOTONES FLOTANTES
+================================ */
+.control-musica,
+.flor-interactiva {
+    position: fixed;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.8);
+    color: #000;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.control-musica:hover,
+.flor-interactiva:hover {
+    transform: scale(1.1);
+    background: rgba(255, 230, 100, 0.9);
+}
+
+.control-musica {
+    right: 20px;
+}
+
+.flor-interactiva {
+    right: 80px;
+}
+
+/* Animación de giro al reproducir música */
+.control-musica.reproduciendo i {
+    animation: girar 6s linear infinite;
+}
+
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ================================
+   MENSAJE FLOTANTE
+================================ */
+.flor-mensaje {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.5s ease;
+    z-index: 9;
+}
+
+.flor-mensaje.mostrar {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ================================
+   MODAL
+================================ */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
     justify-content: center;
     align-items: center;
+    z-index: 100;
+}
+
+.modal.mostrar {
+    display: flex;
+    animation: aparecer 0.6s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.modal-contenido {
+    background: #111;
+    border: 2px solid #d4af37;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
     text-align: center;
-    padding: 4rem 0;
+    color: #eee;
     position: relative;
 }
 
-.titulo-seccion {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    color: var(--verde-menta);
-    margin-bottom: 2.5rem;
-    font-weight: 600;
+.modal-cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #f9e076;
 }
 
-.mensaje {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    max-width: 650px;
-    margin: 0 auto 2.5rem;
-    color: var(--gris-oscuro);
-    font-weight: 300;
-    line-height: 1.9;
+.modal-ramo {
+    width: 100%;
+    border-radius: 10px;
+    margin: 1rem 0;
 }
 
-.corazon {
-    font-size: 2.8rem;
-    margin: 2rem 0;
-    color: var(--rosa-pastel);
-    animation: latido 1.8s infinite;
-    text-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-}
-
-@keyframes latido {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-.final {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 182, 193, 0.4);
-    border-radius: 20px;
-    padding: 4rem 3rem;
-    backdrop-filter: blur(10px);
-    margin: 4rem auto;
-    max-width: 700px;
-    box-shadow: 0 20px 40px rgba(255, 182, 193, 0.2);
-    position: relative;
-}
-
-.firma {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    color: var(--verde-menta);
-    margin-top: 3rem;
-    font-style: italic;
-    letter-spacing: 2px;
+/* ================================
+   ANIMACIONES EXTRA
+================================ */
+@keyframes brilloTexto {
+    from { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+    to   { text-shadow: 0 0 25px rgba(249, 224, 118, 0.7); }
 }
